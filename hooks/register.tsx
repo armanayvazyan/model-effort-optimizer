@@ -102,10 +102,10 @@ export function classifierPrompt(request: string, context: string, current: Now)
 
 Model tiers, cheapest to strongest:
 | tier   | use for |
-| haiku  | lookups, one-liners, renames, formatting, shell one-offs, small talk |
-| sonnet | routine coding, edits in a few files, tests, docs, debugging a clear error |
-| opus   | design decisions, unclear bugs, wide refactors, security, concurrency, risky reviews |
-| fable  | the rare hardest case: long unattended builds, deep research, many-tradeoff system design, bugs that resisted opus |
+| haiku  | lookups, one-liners, renaming a symbol (even repo-wide), formatting, shell one-offs, a quick check of a short snippet, generating sample or fixture data, bulk text work that follows a fixed rule (translating strings, reformatting lists), small talk |
+| sonnet | routine coding: writing a script, a docs or README section, tests, rewriting call sites to a changed signature across files, edits in a few files, debugging a clear error |
+| opus   | design decisions, unclear bugs, performance diagnosis, wide refactors, security, concurrency, risky reviews |
+| fable  | the rare hardest case: long unattended builds or migrations across many services that must work first time, deep research, many-tradeoff system design, bugs that resisted opus |
 
 Effort levels (how long the assistant deliberates and verifies):
 - low: quick or conversational; the user will iterate
@@ -114,7 +114,11 @@ Effort levels (how long the assistant deliberates and verifies):
 - xhigh: long, critical work handed off with no one around to answer questions
 - max: only when the request explicitly demands the deepest possible effort
 
-Rules: pick the cheapest tier that will do the job well. A long task is not automatically a hard one.
+Rules:
+- Pick the cheapest tier that will do the job well. Writing new logic or prose is at least sonnet; generated sample data is not.
+- When torn between two tiers, pick the higher one: a weak answer costs more than the price gap.
+- A long task is not automatically a hard one. A short request is not automatically an easy one: when it refers to the previous reply, judge the problem shown there.
+- A trivial change in a sensitive area (payments, auth, prod config) stays trivial.
 If the request is just an approval or continuation ("ok", "go on", "yes do it", "option 2"), answer "keep" for both.
 
 Currently: tier=${current.tier || 'unknown'} effort=${current.effort || 'unknown'}
@@ -147,6 +151,25 @@ export function parseVerdict(raw: string, current: Now): Verdict | null {
   }
 }
 
+/** One classifier call, the same request in production and in the eval. */
+async function runClassifier($: EngineInterface, text: string, context: string, current: Now) {
+  const started = await $.clock.now()
+  const r = await $.model.complete({
+    model: CLASSIFIER_MODEL,
+    prompt: classifierPrompt(text.slice(0, 4000), context, current),
+    maxTokens: 120,
+    timeoutMs: 15_000,
+  })
+  const ms = (await $.clock.now()) - started
+  return {
+    verdict: r.isAnswered ? parseVerdict(r.text, current) : null,
+    raw: r.isAnswered ? r.text : `error: ${r.reason}`,
+    ms,
+    inputTokens: r.usage?.input_tokens ?? 0,
+    outputTokens: r.usage?.output_tokens ?? 0,
+  }
+}
+
 async function classify($: EngineInterface, text: string, current: Now): Promise<Verdict | null> {
   try {
     await $.ui.status('routing…')
@@ -155,13 +178,7 @@ async function classify($: EngineInterface, text: string, current: Now): Promise
   }
   try {
     const context = lastReply(await $.session.messages())
-    const r = await $.model.complete({
-      model: CLASSIFIER_MODEL,
-      prompt: classifierPrompt(text.slice(0, 4000), context, current),
-      maxTokens: 120,
-      timeoutMs: 15_000,
-    })
-    return r.isAnswered ? parseVerdict(r.text, current) : null
+    return (await runClassifier($, text, context, current)).verdict
   } finally {
     try {
       await $.ui.status(undefined)
@@ -169,6 +186,34 @@ async function classify($: EngineInterface, text: string, current: Now): Promise
       // Optional.
     }
   }
+}
+
+// ---- Dev-only eval: registered only when loaded from a dev-mods folder, never from an install. ----
+
+const EVAL_TOOL = 'router_eval'
+
+type EvalCase = { id: string; prompt: string; context?: string; current: { tier: Tier; effort: Effort } }
+
+async function runEval($: EngineInterface, runs: number, ids: readonly string[] | undefined) {
+  const root = $.plugin.root
+  const data = JSON.parse(String(await $.fs.read(`${root}/eval/dataset.json`))) as { cases: EvalCase[] }
+  const cases = data.cases.filter(c => !ids?.length || ids.includes(c.id))
+  const jobs = cases.flatMap(c => Array.from({ length: runs }, (_, run) => ({ c, run })))
+  const out: unknown[] = []
+  let i = 0
+  // Five at a time keeps it quick without hammering the API.
+  await Promise.all(
+    Array.from({ length: 5 }, async () => {
+      while (i < jobs.length) {
+        const { c, run } = jobs[i++]!
+        const r = await runClassifier($, c.prompt, c.context ?? '', c.current)
+        out.push({ id: c.id, run, tier: r.verdict?.tier ?? null, effort: r.verdict?.effort ?? null, reason: r.verdict?.reason ?? '', raw: r.verdict ? undefined : r.raw, ms: r.ms, inputTokens: r.inputTokens, outputTokens: r.outputTokens })
+      }
+    }),
+  )
+  const path = `${root}/eval/results.json`
+  await $.fs.write(path, JSON.stringify({ model: CLASSIFIER_MODEL, runs, at: new Date(await $.clock.now()).toISOString(), results: out }, null, 2))
+  return `Ran ${jobs.length} classifications (${cases.length} cases x ${runs}). Results: ${path}`
 }
 
 /** Runs on the turn's first request: classify, then pin (auto) or ask first (ask). */
@@ -207,6 +252,17 @@ export const register: Register = on => {
     })
     const stored = await $.store.get('mode')
     rt.mode = stored === 'auto' || stored === 'off' ? stored : 'ask'
+    if ($.plugin.root.includes('/dev-mods/')) {
+      await $.tool.register({
+        name: EVAL_TOOL,
+        description: 'Dev only: runs eval/dataset.json through the router classifier `runs` times per case and writes eval/results.json.',
+        inputSchema: {
+          type: 'object',
+          properties: { runs: { type: 'number', description: 'Runs per case, 1-5' }, ids: { type: 'array', items: { type: 'string' } } },
+          required: ['runs'],
+        },
+      })
+    }
     return next(e)
   })
 
@@ -265,6 +321,14 @@ export const register: Register = on => {
         `Usage: /${ID} ask | auto | off | reset`,
       ].join('\n'),
     }
+  })
+
+  // The tool's name only enters the generated types after it is registered once, hence the cast.
+  const evalMatcher = { tool: 'mcp__model-effort-optimizer__router_eval' } as unknown as { tool: 'Bash' }
+  on('tool.run', evalMatcher, async ($, e) => {
+    const input = e as unknown as { runs?: number; ids?: string[] }
+    const runs = Math.min(5, Math.max(1, Math.round(Number(input.runs) || 1)))
+    return { result: await runEval($, runs, input.ids) }
   })
 
   on('ui.press', { plugin: 'model-effort-optimizer', element: 'undo' }, async ($, e) => {

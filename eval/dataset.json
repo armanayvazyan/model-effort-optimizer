@@ -1,0 +1,855 @@
+{
+  "_doc": "Labeled routing cases. tier/effort = ideal; okTier/okEffort = also acceptable. current = what the chat runs on before the prompt. 'keep' cases expect the current route.",
+  "cases": [
+    {
+      "id": "h1",
+      "prompt": "what does git rebase -i do?",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ]
+    },
+    {
+      "id": "h2",
+      "prompt": "rename the variable usr to user in src/auth.ts",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "h3",
+      "prompt": "run the tests",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ]
+    },
+    {
+      "id": "h4",
+      "prompt": "format this json for me: {\"a\":1,\"b\":[1,2]}",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "h5",
+      "prompt": "thanks, that's all for today",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "opus",
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "high",
+        "medium"
+      ]
+    },
+    {
+      "id": "h6",
+      "prompt": "how do I list docker containers including stopped ones",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "h7",
+      "prompt": "fix the typo 'recieve' in README.md",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "h8",
+      "prompt": "what's the kotlin syntax for a data class with a default value",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ]
+    },
+    {
+      "id": "h9",
+      "prompt": "show me git log for the last 5 commits",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "h10",
+      "prompt": "add a .gitignore entry for .env",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "s1",
+      "prompt": "add a unit test for the parseDate function covering invalid input",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s2",
+      "prompt": "the build fails with 'Cannot find module ./config' after I moved config.ts into src/, fix it",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "haiku"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s3",
+      "prompt": "write a README section explaining how to run the project locally",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "haiku"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s4",
+      "prompt": "add pagination to the GET /users endpoint, page and pageSize query params",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": []
+    },
+    {
+      "id": "s5",
+      "prompt": "convert this class component to a function component with hooks",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s6",
+      "prompt": "add input validation to the signup form: email format and password at least 8 chars",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s7",
+      "prompt": "summarize what changed in this PR and write a description for it",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "haiku"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s8",
+      "prompt": "NullPointerException at UserService.kt:42 when the profile is missing, fix it",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s9",
+      "prompt": "write a bash script that backs up ~/projects to a tar.gz with today's date",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "haiku"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "s10",
+      "prompt": "update all usages of the deprecated logger.warn(msg, err) to logger.warn({err}, msg) in the services folder",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "haiku"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "low"
+      ]
+    },
+    {
+      "id": "o1",
+      "prompt": "we get duplicate charges maybe once a week in production, I suspect a race between the webhook handler and the retry job. find the cause",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "o2",
+      "prompt": "design the data model and API for multi-tenant RBAC with org, team and project level roles",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "o3",
+      "prompt": "review this auth middleware change for security issues before I merge it",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": []
+    },
+    {
+      "id": "o4",
+      "prompt": "refactor the payment module to split it into domain, adapters and persistence layers; it touches about 40 files",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "o5",
+      "prompt": "memory grows about 200MB per hour in the reports processor and eventually OOMs, figure out why",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "o6",
+      "prompt": "should we use event sourcing or plain CRUD with an audit table for the orders service? weigh the tradeoffs for our scale",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "opus",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "medium"
+      ]
+    },
+    {
+      "id": "o7",
+      "prompt": "write a migration that splits the users table into users and profiles without downtime on a 50M row table",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "o8",
+      "prompt": "the flaky test OrderFlowIT fails 1 in 20 runs on CI only, find the root cause",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "medium"
+      ]
+    },
+    {
+      "id": "o9",
+      "prompt": "check this JWT validation for timing attacks and algorithm confusion",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": []
+    },
+    {
+      "id": "o10",
+      "prompt": "implement a lock-free ring buffer for the event bus in Rust and prove it's correct under concurrent producers",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "f1",
+      "prompt": "I'm away all day. migrate the whole backend from REST to gRPC across all 12 services, keep backward compatibility, write tests, and leave a report. critical, it has to work first time",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "fable",
+      "okTier": [
+        "opus"
+      ],
+      "effort": "xhigh",
+      "okEffort": [
+        "max"
+      ]
+    },
+    {
+      "id": "f2",
+      "prompt": "do a deep research report comparing every major vector database for our workload, run benchmarks, and recommend one with full justification. take as long as needed, this decides our architecture for years",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "fable",
+      "okTier": [
+        "opus"
+      ],
+      "effort": "xhigh",
+      "okEffort": [
+        "max"
+      ]
+    },
+    {
+      "id": "f3",
+      "prompt": "use maximum effort: find any correctness bug in our consensus implementation; we've had a split-brain incident twice and opus couldn't find it",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "fable",
+      "okTier": [],
+      "effort": "max",
+      "okEffort": [
+        "xhigh"
+      ]
+    },
+    {
+      "id": "f4",
+      "prompt": "build the full billing system end to end: plans, invoices, proration, tax, Stripe webhooks, admin UI, tests. I won't be around to answer questions",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "fable",
+      "okTier": [
+        "opus"
+      ],
+      "effort": "xhigh",
+      "okEffort": [
+        "high"
+      ]
+    },
+    {
+      "id": "k1",
+      "prompt": "ok go on",
+      "context": "I found the race: the webhook and the retry job both read status=pending. I'll add a row lock. Proceed?",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": []
+    },
+    {
+      "id": "k2",
+      "prompt": "yes do it",
+      "context": "Plan: 1) add pagination params 2) update the repository query 3) add tests. Shall I start?",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": []
+    },
+    {
+      "id": "k3",
+      "prompt": "option 2",
+      "context": "Two options: 1) event sourcing 2) CRUD plus audit table. Which one?",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": []
+    },
+    {
+      "id": "k4",
+      "prompt": "continue",
+      "context": "Migrated 5 of 12 services so far. Continuing with orders-service next.",
+      "current": {
+        "tier": "fable",
+        "effort": "xhigh"
+      },
+      "tier": "fable",
+      "okTier": [],
+      "effort": "xhigh",
+      "okEffort": []
+    },
+    {
+      "id": "k5",
+      "prompt": "lgtm",
+      "context": "Here is the renamed file. Anything else?",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "haiku",
+      "okTier": [],
+      "effort": "low",
+      "okEffort": []
+    },
+    {
+      "id": "t1",
+      "prompt": "rename getUser to fetchUser everywhere in the repo",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "long-sounding but mechanical"
+    },
+    {
+      "id": "t2",
+      "prompt": "generate 200 lines of test fixtures for the user model, varied names and emails",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "long output, easy task"
+    },
+    {
+      "id": "t3",
+      "prompt": "is this regex correct for emails? ^[^@]+@[^@]+\\.[^@]+$",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "short question"
+    },
+    {
+      "id": "t4",
+      "prompt": "why is this slow?",
+      "context": "SELECT * FROM orders o JOIN items i ON i.order_id = o.id WHERE o.created_at > now() - interval '1 day' -- takes 40s on 80M rows",
+      "current": {
+        "tier": "haiku",
+        "effort": "low"
+      },
+      "tier": "opus",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "short prompt, hard problem in context"
+    },
+    {
+      "id": "t5",
+      "prompt": "one-line change: bump the retry limit from 3 to 5 in the payment worker config",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "payment sounds risky, change is trivial"
+    },
+    {
+      "id": "t6",
+      "prompt": "translate the error messages in i18n/en.json to German",
+      "current": {
+        "tier": "opus",
+        "effort": "high"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_trap": "bulk but rule-following"
+    },
+    {
+      "id": "x1",
+      "prompt": "what does git rebase --onto do?",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x2",
+      "prompt": "move the constants in utils.ts into a new constants.ts file and fix imports",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x3",
+      "prompt": "add input validation and error messages to the signup form handler",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "sonnet",
+      "okTier": [
+        "opus"
+      ],
+      "effort": "medium",
+      "okEffort": [
+        "high"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x4",
+      "prompt": "write unit tests for the date parsing helpers in src/dates.ts",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "sonnet",
+      "okTier": [],
+      "effort": "medium",
+      "okEffort": [
+        "high"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x5",
+      "prompt": "our websocket server drops connections randomly under load, no errors in logs. find out why",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x6",
+      "prompt": "review this PR for race conditions in the job scheduler",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x7",
+      "prompt": "change the button color on the login page to #3366ff",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x8",
+      "prompt": "design the schema and API for multi-tenant billing with usage-based pricing and proration",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "opus",
+      "okTier": [
+        "fable"
+      ],
+      "effort": "high",
+      "okEffort": [
+        "xhigh"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x9",
+      "prompt": "list 50 realistic product names for seeding the demo db",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "haiku",
+      "okTier": [
+        "sonnet"
+      ],
+      "effort": "low",
+      "okEffort": [
+        "medium"
+      ],
+      "_heldout": true
+    },
+    {
+      "id": "x10",
+      "prompt": "overnight, no one around: rewrite the auth layer to OIDC across web, mobile api and admin, with migration for existing sessions and full tests",
+      "context": "",
+      "current": {
+        "tier": "sonnet",
+        "effort": "medium"
+      },
+      "tier": "fable",
+      "okTier": [
+        "opus"
+      ],
+      "effort": "xhigh",
+      "okEffort": [
+        "high",
+        "max"
+      ],
+      "_heldout": true
+    }
+  ]
+}
