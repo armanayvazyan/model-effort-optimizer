@@ -1,0 +1,5 @@
+{
+  "name": "model-effort-optimizer",
+  "owner": { "name": "armanayvazyan" },
+  "plugins": [{ "name": "model-effort-optimizer", "source": "./" }]
+}

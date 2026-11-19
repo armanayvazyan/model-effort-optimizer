@@ -1,0 +1,11 @@
+{
+  "name": "model-effort-optimizer",
+  "version": "1.0.0",
+  "description": "Routes each Claude Code prompt to the model (Haiku, Sonnet, Opus, Fable) and effort level it needs, asking first or fully automatic.",
+  "author": { "name": "armanayvazyan", "url": "https://github.com/armanayvazyan" },
+  "homepage": "https://github.com/armanayvazyan/model-effort-optimizer",
+  "repository": "https://github.com/armanayvazyan/model-effort-optimizer",
+  "license": "MIT",
+  "keywords": ["model", "effort", "router", "cost"],
+  "types": "./types/index.d.ts"
+}
